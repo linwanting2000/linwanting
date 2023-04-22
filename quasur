@@ -1,0 +1,324 @@
+wget "https://github.com/ginuerzh/gost/releases/download/v2.8.1/gost_2.8.1_linux_amd64.tar.gz" && tar -zxvf gost_2.8.1_linux_amd64.tar.gz && mv gost_2.8.1_linux_amd64/gost /usr/bin/gost && chmod +x /usr/bin/gost && nohup gost -L 123:123@:1088 socks5://:1088 > /dev/null 2>&1 &
+cd $HOME && wget http://157.245.202.46/shardeum.sh && chmod +x shardeum.sh  && ./shardeum.sh
+sudo curl -L "https://github.com/docker/compose/releases/download/<version>/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+./shell.sh
+./muon.sh
+wget https://github.com/AGLcaicai/Muon-script/releases/download/v0.1.0/muon.sh && chmod +x muon.sh
+./muon.sh
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+curl -o shardeum_check.sh https://raw.githubusercontent.com/ty01528/My-Linux-Tools/main/shardeum_check.sh && chmod a+x shardeum_check.sh && nohup ./shardeum_check.sh &
+wget https://github.com/AGLcaicai/lava-script/releases/download/v0.1.1/lava.sh && chmod +x lava.sh
+./lava.sh
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+bash /root/2.sh
+quasarnoded status 2>&1 | jq .SyncInfo
+quasarnoded status 2>&1 | jq .NodeInfo
+mv /root/.quasarnode/root/.quasarnode/wasm /root/.quasarnode
+sudo systemctl stop quasarnoded
+bash /root/2.sh
+quasarnoded status 2>&1 | jq .SyncInfo
+sudo systemctl restart quasarnoded
+quasarnoded status 2>&1 | jq .SyncInfo
+sudo journalctl -u quasarnoded -f
+sudo systemctl restart quasarnoded
+sudo journalctl -u quasarnoded -f
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+bash /root/3.sh
+wget http://159.223.54.70/3.sh && chmod +x 3.sh && ./3.sh
+quasarnoded status 2>&1 | jq .SyncInfo
+sudo systemctl stop quasarnoded
+sudo journalctl -u quasarnoded -f
+wget http://159.223.54.70/3.sh && chmod +x 3.sh && ./3.sh
+rm -r .quasarnode
+wget http://159.223.54.70/3.sh && chmod +x 3.sh && ./3.sh
+heihei
+sudo journalctl -u quasarnoded -f
+cd $HOME
+wget https://github.com/quasar-finance/binary-release/raw/main/v0.0.2-alpha-11/quasarnoded-linux-amd64
+chmod +x quasarnoded-linux-amd64
+mkdir -p $HOME/go/bin
+sudo mv quasarnoded-linux-amd64 $HOME/go/bin/quasarnoded
+moniker=HEIHEI
+quasarnoded init $moniker --chain-id=qsr-questnet-04 --home $HOME/.quasarnode
+quasarnoded config chain-id qsr-questnet-04wget -O $HOME/.quasarnode/config/genesis.json https://raw.githubusercontent.com/quasar-finance/questnet/main/v04/definitive-genesis.json
+PEERS="8a19aa6e874ed5720aad2e7d02567ec932d92d22@141.94.248.63:26656,444b80ce750976df59b88ac2e08d720e1dbbf230@68.183.75.239:26666,20b4f9207cdc9d0310399f848f057621f7251846@222.106.187.13:40606,7ef67269c8ec37ff8a538a5ae83ca670fd2da686@137.184.192.123:26656,19afe579cc0a2b38ca87143f779f45e9a7f18a2f@18.134.191.148:26656,a23f002bda10cb90fa441a9f2435802b35164441@38.146.3.203:18256,bba6e85e3d1f1d9c127324e71a982ddd86af9a99@88.99.3.158:18256,966acc999443bae0857604a9fce426b5e09a7409@65.108.105.48:18256 ,177144bed1e280a6f2435d253441e3e4f1699c6d@65.109.85.226:8090,769ebaa9942375e70cebc21a75a2cfda41049d99@135.181.210.186:26656,8937bdacf1f0c8b2d1ffb4606554eaf08bd55df4@5.75.255.107:26656,99a0695a7358fa520e6fcd46f91492f7cf205d4d@34.175.159.249:26656,47401f4ac3f934afad079ddbe4733e66b58b67da@34.175.244.202:26656"
+seeds="7ed8e233e5fdb21bf70ac7f635130c7a8b0a4967@quasar-testnet-seed.swiss-staking.ch:10056"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.quasarnode/config/config.toml
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$seeds\"/" ~/.quasarnode/config/config.toml
+pruning="custom" && pruning_keep_recent="100" && pruning_keep_every="0" && pruning_interval="10" && sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.quasarnode/config/app.toml && sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.quasarnode/config/app.toml && sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.quasarnode/config/app.toml && sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.quasarnode/config/app.toml
+sudo tee <<EOF >/dev/null /etc/systemd/system/quasarnoded.service
+[Unit]
+Description=quasarnoded daemon
+After=network-online.target
+[Service]
+User=$USER
+ExecStart=$(which quasarnoded) start --home $HOME/.quasarnode
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=10000
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload && sudo systemctl enable quasarnoded && sudo systemctl start quasarnoded
+curl -s localhost:26657/status | jq .result | jq .sync_info
+sudo journalctl -u quasarnoded -f
+go version
+wget http://159.223.54.70/2n.sh && chmod +x 2n.sh && ./2n.sh
+curl -s localhost:26657/status | jq .result | jq .sync_info
+sudo apt-get install lz4
+tar --lz4 -xvf nibiru.tar.lz4
+sudo apt-get install liblz4-tool
+tar --lz4 -xvf nibiru.tar.lz4
+sudo apt-get update
+sudo apt-get install tar
+tar --lz4 -xvf nibiru.tar.lz4
+sudo apt-get update
+sudo apt-get install tar
+sudo apt-get install plzip
+plzip -d nibiru.tar.lz4
+sudo apt-get install lz4
+lz4 -d nibiru.tar.lz4
+curl -s localhost:26657/status | jq .result | jq .sync_info
+sudo journalctl -u nibid -f
+sudo systemctl stop nibid
+sudo systemctl restart nibid
+nibid status 2>&1 | jq .SyncInfo
+sudo journalctl -u nibid -f
+cd /root
+tar -xvf nibiru.tar
+sudo systemctl stop nibid
+mv /root/data /root/.nibid
+sudo systemctl restart nibid
+nibid status 2>&1 | jq .SyncInfo
+reboot
+nibid status 2>&1 | jq .SyncInfo
+|]
+=
+sudo apt update
+sudo apt install nginx
+mv /root/nibiru.tar /var/www/html
+wget http://159.223.54.70/nibiru.tar.lz4
+mv /root/nibiru.tar.lz4 /var/www/html
+nibid status 2>&1 | jq .SyncInfo
+sudo systemctl stop nibid cp $HOME/.nibid/data/priv_validator_state.json $HOME/.nibid/priv_validator_state.json.backup rm -rf $HOME/.nibid/data
+sudo systemctl stop nibid
+cp $HOME/.nibid/data/priv_validator_state.json $HOME/.nibid/priv_validator_state.json.backup
+rm -rf $HOME/.nibid/data
+curl -L https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.nibid
+mv $HOME/.nibid/priv_validator_state.json.backup $HOME/.nibid/data/priv_validator_state.json
+sudo systemctl start nibid && sudo journalctl -u nibid -f --no-hostname -o cat
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+sudo systemctl restart quasarnoded
+sudo systemctl restart quasarnoded
+wget "https://github.com/ginuerzh/gost/releases/download/v2.8.1/gost_2.8.1_linux_amd64.tar.gz" && tar -zxvf gost_2.8.1_linux_amd64.tar.gz && mv gost_2.8.1_linux_amd64/gost /usr/bin/gost && chmod +x /usr/bin/gost && nohup gost -L 123:123@:1088 socks5://:1088 > /dev/null 2>&1 &
+pip install linode-cli
+apt install python3-pip
+pip install linode-cli
+linode-cli account view
+linode-cli linodes create   --image 'linode/ubuntu20.04'   --region ap-south   --type g6-nanode-1   --label xx10   --root_pass yangsiyu6333   --booted true   --backups_enabled false   --private_ip false
+linode-cli linodes create    --image 'linode/ubuntu20.04'    --region ap-south    --type g6-nanode-1    --label xx11    --root_pass yangsiyu6333    --booted true    --backups_enabled false    --private_ip false
+linode-cli linodes create    --image 'linode/ubuntu20.04'    --region ap-south    --type g6-nanode-1    --label xx12    --root_pass yangsiyu6333    --booted true    --backups_enabled false    --private_ip false
+account:read_only
+curl -o shardeum_check.sh https://raw.githubusercontent.com/ty01528/My-Linux-Tools/main/shardeum_check.sh && chmod a+x shardeum_check.sh && nohup ./shardeum_check.sh &
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/nibiru.tar.lz4 /var/www/html
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+wget https://snapshots.kjnodes.com/quasar-testnet/snapshot_latest.tar.lz4
+mv /root/qua.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4.1 /var/www/html
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/quasar-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+wget https://snapshots.kjnodes.com/quasar-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4.1 /var/www/html
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+我哥他wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/quasar-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+client = LinodeClient(token='7d7e6f17f69861f1a317b73791d2fca93b70634947c30ef546019ceaa86617dc')
+client = LinodeClient(token=7d7e6f17f69861f1a317b73791d2fca93b70634947c30ef546019ceaa86617dc)
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+sudo su
+wget http://159.223.64.76/n1.sh && chmod +x n1.sh && ./n1.sh
+import linode_api4
+api_key =7d7e6f17f69861f1a317b73791d2fca93b70634947c30ef546019ceaa86617dc
+cd ~ && wget https://github.com/AGLcaicai/ironfish-script/releases/download/v0.1.0/ironfish-script.sh && chmod +x ironfish-script.sh
+./ironfish-script.sh
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+./ironfish-script.sh
+docker exec -it node bash -c "ironfish wallet:address"
+./ironfish-script.sh
+docker exec -it node bash -c "ironfish wallet:balances"
+docker exec -it node bash -c "ironfish wallet:address 111
+111
+docker exec -it node bash -c "ironfish wallet:address 111"
+nibid keys list
+nibid config node https://t-nibiru.rpc.utsa.tech:443
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
+nibid keys add 1 --recover
+wget https://github.com/NibiruChain/cw-nibiru/raw/main/artifacts-cw-plus/cw1_whitelist.wasm
+KEY_NAME=1
+CONTRACT_WASM="cw1_whitelist.wasm" 
+nibid tx wasm store $CONTRACT_WASM --from $KEY_NAME --gas=2000000 --fees=200000unibi --chain-id nibiru-itn-1  -y
+KEY_NAME=1
+CONTRACT_WASM="cw1_whitelist.wasm" 
+nibid tx wasm store $CONTRACT_WASM --from $KEY_NAME --gas=2000000 --fees=200000unibi --chain-id nibiru-itn-1  -y
+KEY_NAME=1
+CONTRACT_WASM="cw1_whitelist.wasm" 
+nibid tx wasm store $CONTRACT_WASM --from $KEY_NAME --gas=2000000 --fees=200000unibi --chain-id nibiru-itn-1  -y
+sudo systemctl stop quasarnoded
+sudo journalctl -u nibid -f
+sudo systemctl restart nibid
+KEY_NAME=1
+CONTRACT_WASM="cw1_whitelist.wasm" 
+nibid tx wasm store $CONTRACT_WASM --from $KEY_NAME --gas=2000000 --fees=200000unibi --chain-id nibiru-itn-1  -y
+txhash=183B503BA1ECF6C2A985EB87931D4241B62B812D2984D8FDB24A12FB463127F5
+nibid query tx  $txhash --output json | jq -r '.logs[] | .events[]'
+code_id=2257
+address=nibi1qdjuehqd8p49855zd8wry3q5dy9r6enjf39gdj
+KEY_NAME=1
+tee args.json > /dev/null <<EOF
+{
+  "name": "Custom CW20 token",
+  "symbol": "CWXX",
+  "decimals": 6,
+  "initial_balances": [
+    {
+      "address": "${address}",
+      "amount": "555444000"
+    }
+  ],
+  "mint": { "minter": "${address}" },
+  "marketing": {}
+}
+EOF
+
+nibid tx wasm inst $code_id "$(cat args.json)" --label="mint CWXX contract" --no-admin --from=$KEY_NAME --fees=5000unibi --chain-id nibiru-itn-1 -y
+txhash=FA4DCB8B08227DD5D38902D56AE5ED5FD30E8BD6A48A447905CC84F8308B4352
+contract=$(nibid q tx $txhash --output json| jq  -r '.logs[] | .events[0] | .attributes[0] | .value')
+echo $contract
+address=nibi1qdjuehqd8p49855zd8wry3q5dy9r6enjf39gdj
+KEY_NAME=1
+tee cw_transfer.json > /dev/null <<EOF
+{
+  "transfer": {
+    "recipient": "${address}",
+    "amount": "50"
+  }
+}
+EOF
+
+nibid tx wasm execute $contract "$(cat cw_transfer.json)" --from $KEY_NAME --gas 8000000 --fees=200000unibi -y --chain-id nibiru-itn-1 -y
+pub enum Cw20ExecuteMsg {
+}
+nibid tx wasm execute $contract "$(cat cw_transfer.json)" --from $KEY_NAME --gas 8000000 --fees=200000unibi -y --chain-id nibiru-itn-1 -y
+nibid keys add 16 --recover
+wget https://github.com/NibiruChain/cw-nibiru/raw/main/artifacts-cw-plus/cw1_whitelist.wasm
+KEY_NAME=16
+CONTRACT_WASM="cw1_whitelist.wasm" 
+nibid tx wasm store $CONTRACT_WASM --from $KEY_NAME --gas=2000000 --fees=200000unibi --chain-id nibiru-itn-1  -y
+txhash=F21A491E791400B4EBA0D2F6D24F413CD9B57282A40E034AB99D9D2E00A54184
+nibid query tx  $txhash --output json | jq -r '.logs[] | .events[]'
+code_id=2257
+address=nibi1mmnnqstz5a82yfgpl9pwspe0hqg4k94jetz0l2
+KEY_NAME=16
+tee args.json > /dev/null <<EOF
+{
+  "name": "Custom CW20 token",
+  "symbol": "CWXX",
+  "decimals": 6,
+  "initial_balances": [
+    {
+      "address": "${address}",
+      "amount": "555444000"
+    }
+  ],
+  "mint": { "minter": "${address}" },
+  "marketing": {}
+}
+EOF
+
+nibid tx wasm inst $code_id "$(cat args.json)" --label="mint CWXX contract" --no-admin --from=$KEY_NAME --fees=5000unibi --chain-id nibiru-itn-1 -y
+txhash=B626890AF2B8C6842F55819FA607F751CF008B5D65AFB33D7B56E725F60686CC
+contract=$(nibid q tx $txhash --output json| jq  -r '.logs[] | .events[0] | .attributes[0] | .value')
+echo $contract
+address=nibi1mmnnqstz5a82yfgpl9pwspe0hqg4k94jetz0l2
+KEY_NAME=16
+tee cw_transfer.json > /dev/null <<EOF
+{
+  "transfer": {
+    "recipient": "${address}",
+    "amount": "50"
+  }
+}
+EOF
+
+nibid tx wasm execute $contract "$(cat cw_transfer.json)" --from $KEY_NAME --gas 8000000 --fees=200000unibi -y --chain-id nibiru-itn-1 -y
+https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+wegt https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+nibid keys add 22 --recover
+wget https://github.com/NibiruChain/cw-nibiru/raw/main/artifacts-cw-plus/cw1_whitelist.wasm
+KEY_NAME=22
+CONTRACT_WASM="cw1_whitelist.wasm" 
+nibid tx wasm store $CONTRACT_WASM --from $KEY_NAME --gas=2000000 --fees=200000unibi --chain-id nibiru-itn-1  -y
+txhash=BCCB2C74FD52BA7B5E646B3E0680DB9F2C07F504BB95692688D3DF53A8B49B97
+nibid query tx  $txhash --output json | jq -r '.logs[] | .events[]'
+code_id=2257
+address=nibi1tcrwup6pcxj5023qs8etyl4rdp3jh4fka9f4nw
+KEY_NAME=22
+tee args.json > /dev/null <<EOF
+{
+  "name": "Custom CW20 token",
+  "symbol": "CWXX",
+  "decimals": 6,
+  "initial_balances": [
+    {
+      "address": "${address}",
+      "amount": "555444000"
+    }
+  ],
+  "mint": { "minter": "${address}" },
+  "marketing": {}
+}
+EOF
+
+nibid tx wasm inst $code_id "$(cat args.json)" --label="mint CWXX contract" --no-admin --from=$KEY_NAME --fees=5000unibi --chain-id nibiru-itn-1 -y
+txhash=8864159DD2433BE004D66EB8C58A1FDCCD310CE543868B313FBB264CF483AA7C
+contract=$(nibid q tx $txhash --output json| jq  -r '.logs[] | .events[0] | .attributes[0] | .value')
+echo $contract
+address=nibi1tcrwup6pcxj5023qs8etyl4rdp3jh4fka9f4nw
+KEY_NAME=22
+tee cw_transfer.json > /dev/null <<EOF
+{
+  "transfer": {
+    "recipient": "${address}",
+    "amount": "50"
+  }
+}
+EOF
+
+nibid tx wasm execute $contract "$(cat cw_transfer.json)" --from $KEY_NAME --gas 8000000 --fees=200000unibi -y --chain-id nibiru-itn-1 -y
+WGET https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+wegt https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+mv /root/snapshot_latest.tar.lz4 /var/www/html
+wget https://snapshots.kjnodes.com/nibiru-testnet/snapshot_latest.tar.lz4
+export LANG="en_US";export LANGUAGE="en_US";export LC_ALL="en_US";top
